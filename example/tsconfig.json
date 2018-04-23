@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"removeComments": true,
+		"sourceMap": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"target": "es6",
+		"lib": ["es5", "es6", "dom"],
+		"types": ["node"],
+		"outDir": "dist",
+		"moduleResolution": "node",
+		"typeRoots": [
+			"node_modules/@types"
+		]
+	},
+	"include": [
+        	"index.ts",
+        	"core/**/*.ts",
+        	"app/**/*.ts"
+	],
+	"exclude": [
+		"node_modules",
+      		"**/*.spec.ts",
+        	"spec/**"
+	]
+}

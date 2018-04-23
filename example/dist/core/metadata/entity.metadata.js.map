@@ -1,0 +1,1 @@
+{"version":3,"file":"entity.metadata.js","sourceRoot":"","sources":["../../../../core/metadata/entity.metadata.ts"],"names":[],"mappings":";;AAEA,qCAA+C;AAE/C;IAKI,YAAY,IAAwB;QAChC,IAAI,CAAC,MAAM,GAAG,IAAI,CAAC,MAAM,CAAA;QACzB,IAAI,CAAC,OAAO,GAAG,IAAI,CAAC,OAAO,CAAA;IAC/B,CAAC;IAED,KAAK;QACD,MAAM,CAAC,gBAAM,CAAC,IAAI,CAAC,OAAO,CAAC,CAAA;IAC/B,CAAC;CAEJ;AAdD,wCAcC"}
