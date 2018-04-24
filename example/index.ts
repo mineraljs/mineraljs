@@ -10,7 +10,15 @@ new Server(
     {
         controllers: [UserController],
         components: [UserService],
-        entities: [User]
+        entities: [User],
+        dbOptions: {
+            host: 'localhost',
+            password: 'postgres',
+            username: 'postgres',
+            type: 'postgres',
+            port: 5432,
+            database: 'mineral'
+        }
     }
 )
 

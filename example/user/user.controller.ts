@@ -1,4 +1,4 @@
-import { RestController, getFromContainer, Get, Post, EventListener, Template } from '../../core'
+import { RestController, getFromContainer, Get, Post, EventListener, Template, AmqpHandler } from '../../core'
 import { UserService } from './user.service'
 import { UserDTO } from './user.dto'
 
@@ -12,7 +12,10 @@ export class UserController {
     }
 
     @Get('/api')
-    getUsers() {
+    async getUsers() {
+        await getFromContainer(AmqpHandler)
+            .sendMessage()
+
         return this.userService.getUsers()
     }
 

@@ -34,3 +34,143 @@
 {"level":"debug","message":"1524327305411 debug: Registering action [GET] to /users/api/:id"}
 {"level":"debug","message":"1524327305412 debug: Registering action [POST] to /users/api"}
 {"level":"debug","message":"1524327305431 debug: Registering error handler"}
+{"level":"debug","message":"1524511532789 debug: Initializing Express driver"}
+{"level":"debug","message":"1524511532796 debug: Registering action [GET] to /users/api"}
+{"level":"debug","message":"1524511532797 debug: Registering action [GET] to /users"}
+{"level":"debug","message":"1524511532797 debug: Registering action [GET] to /users/error"}
+{"level":"debug","message":"1524511532798 debug: Registering action [GET] to /users/api/:id"}
+{"level":"debug","message":"1524511532798 debug: Registering action [POST] to /users/api"}
+{"level":"debug","message":"1524511532798 debug: Registering error handler"}
+{"level":"debug","message":"1524511610289 debug: Initializing Express driver"}
+{"level":"debug","message":"1524511610297 debug: Registering action [GET] to /users/api"}
+{"level":"debug","message":"1524511610298 debug: Registering action [GET] to /users"}
+{"level":"debug","message":"1524511610298 debug: Registering action [GET] to /users/error"}
+{"level":"debug","message":"1524511610298 debug: Registering action [GET] to /users/api/:id"}
+{"level":"debug","message":"1524511610299 debug: Registering action [POST] to /users/api"}
+{"level":"debug","message":"1524511610328 debug: Registering error handler"}
+{"level":"debug","message":"1524511626305 debug: Rendering page users/index"}
+{"level":"debug","message":"1524512631362 debug: Initializing Express driver"}
+{"level":"debug","message":"1524512631369 debug: Registering action [GET] to /users/api"}
+{"level":"debug","message":"1524512631370 debug: Registering action [GET] to /users"}
+{"level":"debug","message":"1524512631370 debug: Registering action [GET] to /users/error"}
+{"level":"debug","message":"1524512631370 debug: Registering action [GET] to /users/api/:id"}
+{"level":"debug","message":"1524512631370 debug: Registering action [POST] to /users/api"}
+{"level":"debug","message":"1524512631401 debug: Registering error handler"}
+{"level":"debug","message":"1524512700936 debug: Initializing Express driver"}
+{"level":"debug","message":"1524512700943 debug: Registering action [GET] to /users/api"}
+{"level":"debug","message":"1524512700944 debug: Registering action [GET] to /users"}
+{"level":"debug","message":"1524512700944 debug: Registering action [GET] to /users/error"}
+{"level":"debug","message":"1524512700944 debug: Registering action [GET] to /users/api/:id"}
+{"level":"debug","message":"1524512700944 debug: Registering action [POST] to /users/api"}
+{"level":"debug","message":"1524512700975 debug: Registering error handler"}
+{"level":"debug","message":"1524512781191 debug: Initializing Express driver"}
+{"level":"debug","message":"1524512781198 debug: Registering action [GET] to /users/api"}
+{"level":"debug","message":"1524512781199 debug: Registering action [GET] to /users"}
+{"level":"debug","message":"1524512781199 debug: Registering action [GET] to /users/error"}
+{"level":"debug","message":"1524512781199 debug: Registering action [GET] to /users/api/:id"}
+{"level":"debug","message":"1524512781199 debug: Registering action [POST] to /users/api"}
+{"level":"debug","message":"1524512781228 debug: Registering error handler"}
+{"level":"debug","message":"1524512783788 debug: Rendering page users/index"}
+{"level":"debug","message":"1524512790982 debug: Rendering page users/index"}
+{"level":"debug","message":"1524512916083 debug: Initializing Express driver"}
+{"level":"debug","message":"1524512916090 debug: Registering action [GET] to /users/api"}
+{"level":"debug","message":"1524512916091 debug: Registering action [GET] to /users"}
+{"level":"debug","message":"1524512916092 debug: Registering action [GET] to /users/error"}
+{"level":"debug","message":"1524512916092 debug: Registering action [GET] to /users/api/:id"}
+{"level":"debug","message":"1524512916092 debug: Registering action [POST] to /users/api"}
+{"level":"debug","message":"1524512916122 debug: Registering error handler"}
+{"level":"debug","message":"1524512967803 debug: Initializing Express driver"}
+{"level":"debug","message":"1524512967810 debug: Registering action [GET] to /users/api"}
+{"level":"debug","message":"1524512967811 debug: Registering action [GET] to /users"}
+{"level":"debug","message":"1524512967811 debug: Registering action [GET] to /users/error"}
+{"level":"debug","message":"1524512967811 debug: Registering action [GET] to /users/api/:id"}
+{"level":"debug","message":"1524512967811 debug: Registering action [POST] to /users/api"}
+{"level":"debug","message":"1524512967842 debug: Registering error handler"}
+{"level":"debug","message":"1524512988247 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513063605 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513065673 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513066206 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513066507 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513066860 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513067150 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513067463 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513067771 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513068109 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513068378 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513068583 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513068754 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513068915 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513069067 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513069210 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513069343 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513069497 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513069643 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513069801 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513069960 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513070108 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513070285 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513072611 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513073008 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513073209 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513112696 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513112926 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513113122 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513113311 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513113462 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513113609 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513113735 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513113869 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513114022 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513114174 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513114298 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513114447 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513114612 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513114734 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513114877 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513115050 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513115177 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513115336 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513115474 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513115644 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513115805 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513115927 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513116064 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513116211 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513116361 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513116513 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513116654 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513116816 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513116971 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513117121 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513117289 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513117444 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513117590 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513117749 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513117929 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513118074 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513131438 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513131831 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513132089 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513132314 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513132541 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513132763 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513133011 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513133259 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513133548 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513133907 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513134166 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513137794 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513138122 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513138357 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513138541 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513138727 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513258115 debug: Initializing Express driver"}
+{"level":"debug","message":"1524513258123 debug: Registering action [GET] to /users/api"}
+{"level":"debug","message":"1524513258124 debug: Registering action [GET] to /users"}
+{"level":"debug","message":"1524513258124 debug: Registering action [GET] to /users/error"}
+{"level":"debug","message":"1524513258124 debug: Registering action [GET] to /users/api/:id"}
+{"level":"debug","message":"1524513258124 debug: Registering action [POST] to /users/api"}
+{"level":"debug","message":"1524513258159 debug: Registering error handler"}
+{"level":"debug","message":"1524513263769 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513267277 debug: Rendering page users/index"}
+{"level":"debug","message":"1524513269017 debug: Rendering page users/index"}

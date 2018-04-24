@@ -12,4 +12,5 @@ __export(require("./driver"));
 __export(require("./metadata"));
 __export(require("./logging"));
 __export(require("./error"));
+__export(require("./amqp"));
 //# sourceMappingURL=index.js.map

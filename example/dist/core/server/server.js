@@ -9,7 +9,8 @@ class Server {
         this.driver.initialize(serverOptions);
         this.createComponents(serverOptions.components);
         this.createControllers(serverOptions.controllers);
-        this.createDatabaseConnection(serverOptions.entities);
+        this.createDatabaseConnection(serverOptions.dbOptions, serverOptions.entities);
+        this.setupAmqp();
         this.driver
             .errorHandler()
             .app.listen(2000);
@@ -37,11 +38,11 @@ class Server {
             });
         });
     }
-    createDatabaseConnection(entities) {
-        if (!entities || entities.length === 0)
+    createDatabaseConnection(options, entities) {
+        if (!entities || entities.length === 0 || !options)
             return;
         __1.getFromContainer(__1.EntityManager)
-            .createConnection(entities);
+            .createConnection(options, entities);
     }
     executeAction(actionMetadata, action) {
         try {
@@ -63,6 +64,10 @@ class Server {
         else {
             return this.driver.handleSuccess(result, actionMetadata, action);
         }
+    }
+    setupAmqp() {
+        __1.getFromContainer(__1.AmqpHandler)
+            .sendMessage();
     }
 }
 exports.Server = Server;

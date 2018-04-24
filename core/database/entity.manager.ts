@@ -1,5 +1,5 @@
 import { createConnection, Connection, Repository } from 'typeorm'
-import { getFromContainer, Logger } from '..'
+import { getFromContainer, Logger, DbOptions } from '..'
 
 export class EntityManager {
 
@@ -9,17 +9,24 @@ export class EntityManager {
         
     }    
 
-    createConnection(entities : Function[]) {
-        createConnection({
-            type: 'postgres',
-            host: 'localhost',
-            port: 5432,
-            username: 'postgres',
-            password: 'postgres',
-            database: 'mineral',
+    createConnection(options: DbOptions, entities : Function[]) {
+        let connectionOptions: any = {
+            entities: entities,
             logging: true,
-            entities: entities
-        }).then(connection => {
+            host: options.host,
+            port: options.port,
+            username: options.username,
+            password: options.password,
+            database: options.database,
+            type: options.type
+        }
+
+        if (options.type === 'postgres') {
+ //           connectionOptions.type = 'postgres'
+        }
+
+
+        createConnection(connectionOptions).then(connection => {
             this.connection = connection
         }).catch(err => {
             getFromContainer(Logger).error(`Database connection failed. ${err}`,'Database')

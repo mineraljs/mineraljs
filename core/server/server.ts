@@ -1,5 +1,5 @@
-import { Action, ServerOptions } from '.'
-import { getFromContainer, EventPublisher, ApplicationStartedEvent, BaseDriver, MetadataBuilder, ActionMetadata, EntityManager } from '..'
+import { Action, ServerOptions, DbOptions } from '.'
+import { getFromContainer, EventPublisher, ApplicationStartedEvent, BaseDriver, MetadataBuilder, ActionMetadata, EntityManager, AmqpHandler } from '..'
 
 import { isPromise } from '../utils'
 
@@ -14,7 +14,9 @@ export class Server {
 
         this.createComponents(serverOptions.components)
         this.createControllers(serverOptions.controllers)
-        this.createDatabaseConnection(serverOptions.entities)
+        this.createDatabaseConnection(serverOptions.dbOptions, serverOptions.entities)
+
+        this.setupAmqp()
 
         this.driver
             .errorHandler()
@@ -23,7 +25,6 @@ export class Server {
         getFromContainer(EventPublisher)
             .publish(new ApplicationStartedEvent())
             
-        
     }
 
     private createComponents(components? : Function[]) {
@@ -49,11 +50,11 @@ export class Server {
             })
     }
 
-    private createDatabaseConnection(entities?: Function[]) {
-        if (!entities || entities.length === 0) return
+    private createDatabaseConnection(options?: DbOptions, entities?: Function[]) {
+        if (!entities || entities.length === 0 || !options) return
 
         getFromContainer(EntityManager)
-            .createConnection(entities)
+            .createConnection(options, entities)
     }
 
     private executeAction(actionMetadata: ActionMetadata, action: Action) {
@@ -79,6 +80,11 @@ export class Server {
         } else {
             return this.driver.handleSuccess(result, actionMetadata, action)
         }
+    }
+
+    private setupAmqp() {
+        getFromContainer(AmqpHandler)
+            .sendMessage()
     }
 
 }

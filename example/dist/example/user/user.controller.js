@@ -8,6 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("../../core");
 const user_service_1 = require("./user.service");
@@ -17,7 +25,11 @@ let UserController = class UserController {
         this.userService = core_1.getFromContainer(user_service_1.UserService);
     }
     getUsers() {
-        return this.userService.getUsers();
+        return __awaiter(this, void 0, void 0, function* () {
+            yield core_1.getFromContainer(core_1.AmqpHandler)
+                .sendMessage();
+            return this.userService.getUsers();
+        });
     }
     usersIndex() {
         return this.userService.getUsers();
@@ -39,7 +51,7 @@ __decorate([
     core_1.Get('/api'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUsers", null);
 __decorate([
     core_1.Get(),
