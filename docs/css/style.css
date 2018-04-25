@@ -33,7 +33,7 @@ body {
 
 @media only screen and (min-width: 1200px) {
     #header #youtube--wrap {
-        padding: 0 102px;
+        padding: 0 16px;
     }
 }
 
