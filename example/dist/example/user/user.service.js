@@ -70,7 +70,16 @@ let UserService = class UserService {
     }
     deleteUser(user) {
     }
+    onQueue(message) {
+        console.log(message.content.toString());
+    }
 };
+__decorate([
+    core_1.Subscriber('queue'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UserService.prototype, "onQueue", null);
 UserService = __decorate([
     core_1.Component('userService'),
     __metadata("design:paramtypes", [])

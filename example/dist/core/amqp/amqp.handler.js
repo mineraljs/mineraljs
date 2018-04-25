@@ -9,36 +9,57 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const amqp = require("amqplib/callback_api");
+const __1 = require("..");
 class AmqpHandler {
     constructor() {
-        this.receiveMessage();
     }
-    receiveMessage() {
-        amqp.connect('amqp://localhost', (err, conn) => {
-            conn.createChannel((err, channel) => {
-                const exchange = 'mineraljs.exchange';
-                channel.assertExchange(exchange, 'fanout', { durable: false });
+    initialize(amqpUrl) {
+        return new Promise((resolve, reject) => {
+            amqp.connect(amqpUrl, (err, conn) => {
+                if (err) {
+                    __1.getFromContainer(__1.Logger)
+                        .error(`Cannot connect to amqp with url [${amqpUrl}]: ${err}`);
+                    reject(err);
+                    return;
+                }
+                this.connection = conn;
+                resolve();
+            });
+        });
+    }
+    setupSubscribers() {
+        this.createChannel()
+            .then(channel => {
+            __1.getMetadataArgsStorage().subscribers.forEach(subscriber => {
+                channel.assertExchange(subscriber.queue, 'fanout', { durable: false });
                 channel.assertQueue('', { exclusive: true }, (err, queue) => {
-                    console.log('got queue', err, queue);
-                    channel.bindQueue(queue.queue, exchange, '');
+                    channel.bindQueue(queue.queue, subscriber.queue, '');
                     channel.consume(queue.queue, (msg) => {
-                        console.log('Got message:', msg.content.toString());
+                        const target = __1.getFromContainer(subscriber.target);
+                        target[subscriber.method].apply(target, [msg]);
                     }, { noAck: true });
                 });
             });
         });
     }
-    sendMessage() {
+    createChannel() {
+        return new Promise((resolve, reject) => {
+            this.connection.createChannel((err, channel) => {
+                if (err) {
+                    __1.getFromContainer(__1.Logger)
+                        .error(`Cannot create channel: ${err}`);
+                    reject(err);
+                    return;
+                }
+                resolve(channel);
+            });
+        });
+    }
+    sendMessage(queue, message) {
         return __awaiter(this, void 0, void 0, function* () {
-            amqp.connect('amqp://localhost', (err, conn) => {
-                console.log('got connection', err, conn);
-                conn.createChannel((err, channel) => {
-                    console.log('got channel', err, channel);
-                    const exchange = 'mineraljs.exchange';
-                    const message = 'Hello World!';
-                    channel.assertExchange(exchange, 'fanout', { durable: false });
-                    channel.publish(exchange, '', new Buffer(message));
-                });
+            this.createChannel().then(channel => {
+                channel.assertExchange(queue, 'fanout', { durable: false });
+                channel.publish(queue, '', new Buffer(message));
             });
         });
     }

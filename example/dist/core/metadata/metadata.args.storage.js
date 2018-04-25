@@ -13,6 +13,7 @@ class MetadataArgsStorage {
         this.actions = [];
         this.responseHandlers = [];
         this.eventListeners = [];
+        this.subscribers = [];
     }
     filterComponentMetadataForClasses(classes) {
         return this.components.filter(component => {

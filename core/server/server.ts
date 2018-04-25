@@ -1,7 +1,8 @@
 import { Action, ServerOptions, DbOptions } from '.'
-import { getFromContainer, EventPublisher, ApplicationStartedEvent, BaseDriver, MetadataBuilder, ActionMetadata, EntityManager, AmqpHandler } from '..'
+import { getFromContainer, EventPublisher, ApplicationStartedEvent, BaseDriver, MetadataBuilder, ActionMetadata, EntityManager, AmqpHandler, Logger } from '..'
 
 import { isPromise } from '../utils'
+import { LogLevel } from '../types';
 
 export class Server {
 
@@ -10,21 +11,34 @@ export class Server {
     constructor(private driver: BaseDriver, serverOptions: ServerOptions) {
         this.metadataBuilder = new MetadataBuilder(serverOptions)
         
+        this.setupLogger(serverOptions.logLevel)
+
         this.driver.initialize(serverOptions)
 
         this.createComponents(serverOptions.components)
         this.createControllers(serverOptions.controllers)
-        this.createDatabaseConnection(serverOptions.dbOptions, serverOptions.entities)
+        this.createDatabaseConnection(serverOptions, serverOptions.entities)
 
-        this.setupAmqp()
+        this
+            .setupAmqp(serverOptions.amqpUrl)
 
         this.driver
             .errorHandler()
+
+        this.driver
             .app.listen(2000)
             
         getFromContainer(EventPublisher)
-            .publish(new ApplicationStartedEvent())
-            
+            .publish(new ApplicationStartedEvent())       
+    }
+
+    private setupLogger(logLevel? : LogLevel) {
+        if (!logLevel) {
+            logLevel = LogLevel.ERROR
+        }
+
+        getFromContainer(Logger)
+            .initialize(logLevel)
     }
 
     private createComponents(components? : Function[]) {
@@ -50,11 +64,12 @@ export class Server {
             })
     }
 
-    private createDatabaseConnection(options?: DbOptions, entities?: Function[]) {
-        if (!entities || entities.length === 0 || !options) return
+    private createDatabaseConnection(options?: ServerOptions, entities?: Function[]) {
+        if (!entities || entities.length === 0 || !options || !options.dbOptions) return
+        if (options.dbOptions.logging === null) options.dbOptions.logging = options.logLevel === LogLevel.DEBUG
 
         getFromContainer(EntityManager)
-            .createConnection(options, entities)
+            .createConnection(options.dbOptions, entities)
     }
 
     private executeAction(actionMetadata: ActionMetadata, action: Action) {
@@ -82,9 +97,14 @@ export class Server {
         }
     }
 
-    private setupAmqp() {
-        getFromContainer(AmqpHandler)
-            .sendMessage()
+    private setupAmqp(amqpUrl?: string) {
+        if (!amqpUrl) return
+
+        const amqpHandler = getFromContainer(AmqpHandler)
+
+        amqpHandler
+            .initialize(amqpUrl)
+            .then(() => amqpHandler.setupSubscribers())
     }
 
 }

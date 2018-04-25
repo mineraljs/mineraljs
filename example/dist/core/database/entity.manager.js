@@ -8,7 +8,7 @@ class EntityManager {
     createConnection(options, entities) {
         let connectionOptions = {
             entities: entities,
-            logging: true,
+            logging: options.logging,
             host: options.host,
             port: options.port,
             username: options.username,
@@ -16,8 +16,6 @@ class EntityManager {
             database: options.database,
             type: options.type
         };
-        if (options.type === 'postgres') {
-        }
         typeorm_1.createConnection(connectionOptions).then(connection => {
             this.connection = connection;
         }).catch(err => {

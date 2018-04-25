@@ -12,7 +12,7 @@ export class EntityManager {
     createConnection(options: DbOptions, entities : Function[]) {
         let connectionOptions: any = {
             entities: entities,
-            logging: true,
+            logging: options.logging,
             host: options.host,
             port: options.port,
             username: options.username,
@@ -20,11 +20,6 @@ export class EntityManager {
             database: options.database,
             type: options.type
         }
-
-        if (options.type === 'postgres') {
- //           connectionOptions.type = 'postgres'
-        }
-
 
         createConnection(connectionOptions).then(connection => {
             this.connection = connection

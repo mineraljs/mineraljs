@@ -1,10 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const winston = require("winston");
+const types_1 = require("../types");
 class Logger {
     constructor() {
+    }
+    initialize(level) {
+        this.logLevel = this.logLevel;
         this.logger = winston.createLogger({
-            level: 'debug',
+            level: this.getLogLevel(),
             transports: [
                 new winston.transports.Console(),
                 new winston.transports.File({ filename: 'combined.log' })
@@ -12,13 +16,16 @@ class Logger {
         });
     }
     debug(message, label) {
-        this.log(message, 'debug', label);
+        if (this.logLevel === types_1.LogLevel.DEBUG)
+            this.log(message, 'debug', label);
     }
     info(message, label) {
-        this.log(message, 'info', label);
+        if (this.logLevel <= types_1.LogLevel.INFO)
+            this.log(message, 'info', label);
     }
     warning(message, label) {
-        this.log(message, 'warning', label);
+        if (this.logLevel <= types_1.LogLevel.WARNING)
+            this.log(message, 'warning', label);
     }
     error(message, label) {
         this.log(message, 'error', label);
@@ -29,6 +36,12 @@ class Logger {
             level: level,
             message: label ? `${timestamp} [${label}] ${level}: ${message}` : `${timestamp} ${level}: ${message}`
         });
+    }
+    getLogLevel() {
+        return this.logLevel === types_1.LogLevel.DEBUG ? 'debug' :
+            this.logLevel === types_1.LogLevel.INFO ? 'info' :
+                this.logLevel === types_1.LogLevel.WARNING ? 'warning' :
+                    'error';
     }
 }
 exports.Logger = Logger;

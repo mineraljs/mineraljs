@@ -13,9 +13,9 @@ export class EventListenerMetadata {
         this.method = args.method
     }
 
-    get instance(): any {
-        return getFromContainer(this.event.constructor)
-    }
+//    get instance(): any {
+//        return getFromContainer(this.event.constructor)
+//    }
 
 }
 

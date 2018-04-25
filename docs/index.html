@@ -14,22 +14,22 @@
 <body>
 <header id="header">
   <section class="columns">
-    <div class="column is-one-fifth"></div>
-    <div class="column is-three-fifth">
+    <div class="column is-one-fifth-tablet"></div>
+    <div class="column is-three-fifths-">
       <h1 id="title">
         Mineraljs
       </h1>
       <div id="youtube--wrap">
-        <iframe width="100%" height="360" src="https://youtube.com/embed/r1yYJBzf1VQ?iv_load_policy=3"></iframe>
+        <iframe width="100%" height="100%" src="https://youtube.com/embed/r1yYJBzf1VQ?iv_load_policy=3"></iframe>
       </div>
     </div>
-    <div class="column is-one-fifth"></div>
+    <div class="column is-one-fifths-tablet"></div>
   </section>
 </header>
 <section class="columns" id="main">
-  <main class="column is-four-fifth">
+  <main class="column is-four-fifths">
     <div class="columns">
-      <div class="column is-two-fifth">
+      <div class="column is-three-fifths">
         <h3 class="title">
           Getting started
         </h3>
@@ -37,7 +37,15 @@
           Installation
         </h3>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget nunc ac odio molestie pulvinar eu et sem. Vestibulum sit amet odio eu felis aliquet pellentesque nec id orci. Donec consequat ut justo a interdum. Proin nulla augue, malesuada id sodales non, lacinia quis magna. Morbi sed congue quam. Donec at imperdiet velit. Donec suscipit, risus eget lacinia tincidunt, augue ipsum semper purus, nec varius nisi elit et ipsum. Fusce porta enim non metus tempor interdum. Aliquam maximus est velit, in iaculis arcu sagittis a. Nullam vulputate libero nibh, in elementum felis auctor ac. Aenean viverra purus vitae lacus imperdiet ullamcorper. Nulla dictum tortor eu ante dignissim varius. Nullam euismod pharetra velit vitae pretium. Donec tincidunt velit quis semper pellentesque.
+          Assuming <a>node.js</a> is already installed, install <strong>mineral.js</strong> by using the following command
+        </p>
+        <br />
+        <pre>
+          $ npm install mineraljs --save
+        </pre>
+        <br />
+        <p>
+          It's as easy as that.
         </p>
         <span class="whitespace"></span>
         <h3 class="subtitle" id="setup">
@@ -47,6 +55,10 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget nunc ac odio molestie pulvinar eu et sem. Vestibulum sit amet odio eu felis aliquet pellentesque nec id orci. Donec consequat ut justo a interdum. Proin nulla augue, malesuada id sodales non, lacinia quis magna. Morbi sed congue quam. Donec at imperdiet velit. Donec suscipit, risus eget lacinia tincidunt, augue ipsum semper purus, nec varius nisi elit et ipsum. Fusce porta enim non metus tempor interdum. Aliquam maximus est velit, in iaculis arcu sagittis a. Nullam vulputate libero nibh, in elementum felis auctor ac. Aenean viverra purus vitae lacus imperdiet ullamcorper. Nulla dictum tortor eu ante dignissim varius. Nullam euismod pharetra velit vitae pretium. Donec tincidunt velit quis semper pellentesque.
         </p>
         <span class="whitespace"></span>
+        <h3 class="subtitle" id="hello-world">
+          Hello Rocks!<br />
+          <small>a mineraljs Hello World implementation</small>
+        </h3>
         <span class="whitespace"></span>
         <h3 class="title">
           Components
@@ -71,8 +83,133 @@
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget nunc ac odio molestie pulvinar eu et sem. Vestibulum sit amet odio eu felis aliquet pellentesque nec id orci. Donec consequat ut justo a interdum. Proin nulla augue, malesuada id sodales non, lacinia quis magna. Morbi sed congue quam. Donec at imperdiet velit. Donec suscipit, risus eget lacinia tincidunt, augue ipsum semper purus, nec varius nisi elit et ipsum. Fusce porta enim non metus tempor interdum. Aliquam maximus est velit, in iaculis arcu sagittis a. Nullam vulputate libero nibh, in elementum felis auctor ac. Aenean viverra purus vitae lacus imperdiet ullamcorper. Nulla dictum tortor eu ante dignissim varius. Nullam euismod pharetra velit vitae pretium. Donec tincidunt velit quis semper pellentesque.
         </p>
+        <span class="whitespace"></span>
+        <h3 class="subtitle" id="configuration">
+          Configuration
+        </h3>
+        <h4 class="subtitle">
+          ServerOptions
+        </h4>
+        <table class="table is-striped is-fullwidth">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>controllers</td>
+              <td>Function[]</td>
+              <td>
+                <pre>
+                  import { UserController, AddressController } from './controllers' <br />
+                  new Server({
+                    controllers: [UserController, AddressController]
+                  })
+                </pre>
+              </td>
+            </tr>
+            <tr>
+              <td>components</td>
+              <td>Function[]</td>
+              <td>
+                <pre>
+                  import { UserService, AddressService } from './services' <br />
+                  new Server({
+                    components: [UserService, AddressService]
+                  })
+                </pre>
+              </td>
+            </tr>
+            <tr>
+              <td>Entities</td>
+              <td>Function[]</td>
+              <td>
+                <pre>
+                  import { User, Address } from './entities' <br />
+                  new Server({
+                    entities: [User, Address]
+                  })
+                </pre>
+              </td>
+            </tr>
+            <tr>
+              <td>logLevel</td>
+              <td>Enum</td>
+              <td>
+                <span>Possible values: DEBUG, INFO, WARNING, ERROR</span>
+                <br />
+                <span>default value: <strong>ERROR</strong></span>
+              </td>
+            </tr>
+            <tr>
+              <td>amqpUrl</td>
+              <td>string</td>
+              <td>
+                <span>if set, amqp will be enabled</span>
+              </td>
+            </tr>
+            <tr>
+              <td>dbOptions</td>
+              <td>DbOptions</td>
+              <td>see <a href="#dboptions">DbOptions</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <span class="whitespace"></span>
+        <h4 class="subtitle" id="dboptions">
+          DbOptions
+        </h4>
+        <table class="table is-striped is-fullwidth">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>host</td>
+              <td>string</td>
+              <td>host to the database. <br />example: <strong>'localhost'</strong></td>
+            </tr>
+            <tr>
+              <td>type</td>
+              <td>string</td>
+              <td>type of the database. <br /> example: <strong>'postgres'</strong></td>
+            </tr>
+            <tr>
+              <td>port</td>
+              <td>number</td>
+              <td>port of the database. <br /> example: <strong>5432</strong></td>
+            </tr>
+            <tr>
+              <td>username</td>
+              <td>string</td>
+              <td>username of the database. <br /> example: <strong>'postgres'</strong></td>
+            </tr>
+            <tr>
+              <td>password</td>
+              <td>string</td>
+              <td>password of the database. <br /> example: <strong>'postgres'</strong></td>
+            </tr>
+            <tr>
+              <td>database</td>
+              <td>string</td>
+              <td>database name. <br /> example: <strong>'mineraljs'</strong></td>
+            </tr>
+            <tr>
+              <td>logging</td>
+              <td>boolean</td>
+              <td>if true, logging of the queries will be enabled. <br /> default value: <strong>If loglevel is on DEBUG, true, otherwise, false</strong></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="column is-three-fifth">
+      <div class="column is-two-fifths-desktop">
           <div id="terminal">
               <div class="menu">
                 <div class="terminal-button close"></div>
@@ -80,14 +217,14 @@
                 <div class="terminal-button zoom"></div>
               </div>
               <div class="screen">
-                <p class="line">> npm i --save mineraljs</p>
+                <p class="line">> npm install mineraljs --save</p>
                 <p class="line">><span class="cursor">_</span></p>
               </div>
             </div>
       </div>
     </div>
   </main>
-  <div class="column is-one-fifth">
+  <div class="column is-one-fifth is-hidden-mobile">
     <aside class="menu">
       <p class="menu-label">
         Getting started
@@ -124,20 +261,44 @@
           </a>
         </li>
       </ul>
+      <p class="menu-label">
+        Configuration
+      </p>
+      <ul class="menu-list">
+        <li>
+          <a href="#configuration">
+            Configuration
+          </a>
+        </li>
+      </ul>
     </aside>
   </div>
 </section>
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Mineraljs</strong> by <strong>Pascal Wilbrink</strong>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
+    </div>
+  </div>
+</footer>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Tajawal" rel="stylesheet">
 <script>
   window.onscroll = (e) => {
     let scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
 
     let menu = document.getElementsByTagName('aside')[0]
+    let terminal = document.getElementById('terminal')
 
     if (scrollTop > 520) {
       menu.classList.add('fixed')
+      terminal.classList.add('fixed')
     } else {
       menu.classList.remove('fixed')
+      terminal.classList.remove('fixed')
     }
   }
 </script>

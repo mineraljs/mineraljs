@@ -14,7 +14,7 @@ export class UserController {
     @Get('/api')
     async getUsers() {
         await getFromContainer(AmqpHandler)
-            .sendMessage()
+            .sendMessage('queue', 'Test message')
 
         return this.userService.getUsers()
     }

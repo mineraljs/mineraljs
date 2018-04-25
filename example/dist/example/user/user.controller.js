@@ -27,7 +27,7 @@ let UserController = class UserController {
     getUsers() {
         return __awaiter(this, void 0, void 0, function* () {
             yield core_1.getFromContainer(core_1.AmqpHandler)
-                .sendMessage();
+                .sendMessage('queue', 'Test message');
             return this.userService.getUsers();
         });
     }

@@ -24,12 +24,23 @@ body {
     text-shadow: 0px -1px 0px rgba(50, 50, 50, 1);
 }
 
-#header #youtube--wrap {
-    box-sizing: border-box;
-    padding: 0 102px;
+@media only screen and (max-width: 768px) {
+    #header #youtube--wrap {
+        padding: 0 16px;
+        height: 340px;
+    }
 }
+
+@media only screen and (min-width: 1200px) {
+    #header #youtube--wrap {
+        padding: 0 102px;
+    }
+}
+
+#header #youtube--wrap,
 #header #youtube--wrap iframe {
     box-sizing: border-box;
+    height: 360px;
 }
 
 #main {
@@ -91,9 +102,14 @@ body {
     color: #9cd9f0;
 }
 
-aside.menu.fixed {
+aside.menu.fixed,
+#terminal.fixed {
     position: fixed;
     top: 16px;
+}
+
+#terminal.fixed {
+    width: 30%;
 }
 
 .line {

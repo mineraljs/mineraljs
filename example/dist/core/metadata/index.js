@@ -9,4 +9,5 @@ __export(require("./controller.metadata"));
 __export(require("./component.metadata"));
 __export(require("./response.handler.metadata"));
 __export(require("./action.metadata"));
+__export(require("./subscriber.metadata"));
 //# sourceMappingURL=index.js.map

@@ -1,43 +1,74 @@
 import * as amqp from 'amqplib/callback_api'
 
+import { getMetadataArgsStorage, getFromContainer, Subscriber, Logger } from '..'
+
 export class AmqpHandler {
 
+    private amqpUrl: string
+    private connection: any
+
     constructor() {
-        this.receiveMessage()
-       // this.sendMessage()
     }
 
-    receiveMessage() {
-        amqp.connect('amqp://localhost', (err, conn) => {
-            conn.createChannel((err, channel) => {
-                const exchange = 'mineraljs.exchange'
+    initialize(amqpUrl: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            amqp.connect(amqpUrl, (err, conn) => {
+                if (err) {
+                    getFromContainer(Logger)
+                        .error(`Cannot connect to amqp with url [${amqpUrl}]: ${err}`)
+                    
+                        reject(err)
+                    return
+                }
+                this.connection = conn
 
-                channel.assertExchange(exchange, 'fanout', {durable: false})
+                resolve()
+            })
+        })
+            
+    }
 
+    setupSubscribers() {
+        this.createChannel()
+            .then(channel => {
+
+            getMetadataArgsStorage().subscribers.forEach(subscriber => {
+                channel.assertExchange(subscriber.queue, 'fanout', {durable: false})
                 channel.assertQueue('', {exclusive: true}, (err, queue) => {
-                    console.log('got queue', err, queue )
-                    channel.bindQueue(queue.queue, exchange, '')
 
+                    channel.bindQueue(queue.queue, subscriber.queue, '')
                     channel.consume(queue.queue, (msg) => {
-                        console.log('Got message:', msg.content.toString())
-                    }, {noAck: true})
+
+                      const target = getFromContainer(subscriber.target)
+                        target[subscriber.method].apply(target, [msg])
+                    }, {noAck:true})
                 })
             })
         })
+    
     }
 
-    async sendMessage() {
-        amqp.connect('amqp://localhost', (err, conn) => {
-            console.log('got connection', err, conn)
-            conn.createChannel((err, channel) => {
-                console.log('got channel', err, channel)
-                const exchange = 'mineraljs.exchange'
+    private createChannel(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.connection.createChannel((err, channel) => {
+                if (err) {
+                    getFromContainer(Logger)
+                        .error(`Cannot create channel: ${err}`)
 
-                const message = 'Hello World!'
+                    reject(err)
+                    return
+                }
 
-                channel.assertExchange(exchange, 'fanout', {durable: false})
-                channel.publish(exchange, '', new Buffer(message))
+                resolve(channel)
             })
         })
     }
+
+    async sendMessage(queue: string, message: any) {
+        this.createChannel().then(channel => {    
+            channel.assertExchange(queue, 'fanout', {durable: false})
+            channel.publish(queue, '', new Buffer(message))
+        })
+    }
 }
+

@@ -1,4 +1,4 @@
-import { Component, getFromContainer, EntityManager } from '../../core'
+import { Component, getFromContainer, EntityManager, Subscriber } from '../../core'
 
 import * as uuid from 'uuid/v4'
 
@@ -82,4 +82,9 @@ export class UserService {
 
     }
 
+    @Subscriber('queue')
+    onQueue(message: any) {
+        console.log(message.content.toString())
+    }
+    
 }

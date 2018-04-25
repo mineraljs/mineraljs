@@ -1,4 +1,4 @@
-import { ControllerMetadataArgs, ComponentMetadataArgs, ActionMetadataArgs, ResponseHandlerMetadataArgs, EventListenerMetadataArgs } from './args'
+import { ControllerMetadataArgs, ComponentMetadataArgs, ActionMetadataArgs, ResponseHandlerMetadataArgs, EventListenerMetadataArgs, SubscriberMetadataArgs } from './args'
 
 export function getMetadataArgsStorage(): MetadataArgsStorage {
 
@@ -19,6 +19,8 @@ export class MetadataArgsStorage {
     responseHandlers: ResponseHandlerMetadataArgs[] = []
 
     eventListeners: EventListenerMetadataArgs[] = []
+
+    subscribers: SubscriberMetadataArgs[] = []
 
     filterComponentMetadataForClasses(classes: Function[]) {
         return this.components.filter(component => {

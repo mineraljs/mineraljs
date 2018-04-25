@@ -9,4 +9,5 @@ __export(require("./rest.controller"));
 __export(require("./http.methods"));
 __export(require("./event.listener"));
 __export(require("./template"));
+__export(require("./subscriber"));
 //# sourceMappingURL=index.js.map

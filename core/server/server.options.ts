@@ -1,4 +1,5 @@
 import { DatabaseType } from 'typeorm'
+import { LogLevel } from '../types';
 export interface ServerOptions {
 
     controllers?: Function[]
@@ -9,6 +10,9 @@ export interface ServerOptions {
 
     dbOptions?: DbOptions
 
+    logLevel?: LogLevel
+
+    amqpUrl?: string
 }
 
 export interface DbOptions {
@@ -25,4 +29,5 @@ export interface DbOptions {
 
     database: string
 
+    logging?: Boolean
 }

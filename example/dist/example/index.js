@@ -15,6 +15,7 @@ new core_1.Server(new driver_1.ExpressDriver(), {
         type: 'postgres',
         port: 5432,
         database: 'mineral'
-    }
+    },
+    amqpUrl: 'amqp://localhost'
 });
 //# sourceMappingURL=index.js.map

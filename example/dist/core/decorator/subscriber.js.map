@@ -1,0 +1,1 @@
+{"version":3,"file":"subscriber.js","sourceRoot":"","sources":["../../../../core/decorator/subscriber.ts"],"names":[],"mappings":";;AAAA,0CAAoD;AAEpD,oBAA2B,KAAa;IACpC,MAAM,CAAC,UAAU,MAAc,EAAE,UAAkB;QAC/C,iCAAsB,EAAE,CAAC,WAAW,CAAC,IAAI,CAAC;YACtC,MAAM,EAAE,MAAM,CAAC,WAAW;YAC1B,MAAM,EAAE,UAAU;YAClB,KAAK,EAAE,KAAK;SACf,CAAC,CAAA;IACN,CAAC,CAAA;AACL,CAAC;AARD,gCAQC"}

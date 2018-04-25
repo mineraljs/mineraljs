@@ -2,20 +2,31 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const __1 = require("..");
 const utils_1 = require("../utils");
+const types_1 = require("../types");
 class Server {
     constructor(driver, serverOptions) {
         this.driver = driver;
         this.metadataBuilder = new __1.MetadataBuilder(serverOptions);
+        this.setupLogger(serverOptions.logLevel);
         this.driver.initialize(serverOptions);
         this.createComponents(serverOptions.components);
         this.createControllers(serverOptions.controllers);
-        this.createDatabaseConnection(serverOptions.dbOptions, serverOptions.entities);
-        this.setupAmqp();
+        this.createDatabaseConnection(serverOptions, serverOptions.entities);
+        this
+            .setupAmqp(serverOptions.amqpUrl);
         this.driver
-            .errorHandler()
+            .errorHandler();
+        this.driver
             .app.listen(2000);
         __1.getFromContainer(__1.EventPublisher)
             .publish(new __1.ApplicationStartedEvent());
+    }
+    setupLogger(logLevel) {
+        if (!logLevel) {
+            logLevel = types_1.LogLevel.ERROR;
+        }
+        __1.getFromContainer(__1.Logger)
+            .initialize(logLevel);
     }
     createComponents(components) {
         if (!components || components.length === 0)
@@ -39,10 +50,12 @@ class Server {
         });
     }
     createDatabaseConnection(options, entities) {
-        if (!entities || entities.length === 0 || !options)
+        if (!entities || entities.length === 0 || !options || !options.dbOptions)
             return;
+        if (options.dbOptions.logging === null)
+            options.dbOptions.logging = options.logLevel === types_1.LogLevel.DEBUG;
         __1.getFromContainer(__1.EntityManager)
-            .createConnection(options, entities);
+            .createConnection(options.dbOptions, entities);
     }
     executeAction(actionMetadata, action) {
         try {
@@ -65,9 +78,13 @@ class Server {
             return this.driver.handleSuccess(result, actionMetadata, action);
         }
     }
-    setupAmqp() {
-        __1.getFromContainer(__1.AmqpHandler)
-            .sendMessage();
+    setupAmqp(amqpUrl) {
+        if (!amqpUrl)
+            return;
+        const amqpHandler = __1.getFromContainer(__1.AmqpHandler);
+        amqpHandler
+            .initialize(amqpUrl)
+            .then(() => amqpHandler.setupSubscribers());
     }
 }
 exports.Server = Server;

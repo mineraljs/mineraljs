@@ -18,7 +18,8 @@ new Server(
             type: 'postgres',
             port: 5432,
             database: 'mineral'
-        }
+        },
+        amqpUrl: 'amqp://localhost'
     }
 )
 
